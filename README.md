@@ -1,5 +1,27 @@
 # 🛡️ Phishing Detection
 
+## 🧠 Project Overview
+
+Phishing is one of the most common attack methods used in cybersecurity. Attackers create fake websites that appear legitimate and trick users into entering sensitive information, such as login credentials or payment details. These phishing sites are typically distributed through deceptive URLs that mimic trusted domains. According to the Anti-Phishing Working Group (APWG), phishing reports reached an all-time high in 2023, affecting users and organisations across every industry [1].
+
+Traditional rule-based systems to detect phishing are often rigid and easy to bypass. Hackers can craft URLs that closely resemble trusted websites to avoid detection. In contrast, machine learning models can analyse patterns in URLs and learn to distinguish between legitimate and malicious ones. This is particularly useful for organisations such as banks, which need to prevent users from interacting with phishing sites in real time.
+
+Machine learning has proven effective in phishing detection due to its ability to identify subtle patterns in URL structure that may not be obvious to users or static filters. Studies such as Sahoo et al. (2017) [2] demonstrate how models trained on lexical and structural features of URLs can generalise to new phishing attacks.
+
+### Project Aim
+
+This project aims to build a machine learning model that can classify URLs as *phishing* or *legitimate*, and deploy it as a **real-time prediction service using AWS**.
+
+To ensure robustness during inference, this project avoids reliance on features that are not publicly defined or difficult to reproduce. Although the original dataset from the [UCI Machine Learning Repository - PhiUSIIL Phishing URL dataset][3] contains engineered features, we instead compute these ourselves using custom logic applied to the raw URL string. This guarantees that feature computation is consistent and reproducible at runtime for unseen URLs.
+
+---
+
+### 🔗 References
+
+[1] APWG. (2023). *Phishing Activity Trends Report*. https://apwg.org  
+[2] Sahoo, D., Liu, C., & Hoi, S. C. (2017). *Malicious URL Detection using Machine Learning: A Survey*. ACM Computing Surveys, 50(3), 1–33.  
+[3] UCI Machine Learning Repository: PhiUSIIL Phishing URL Dataset. https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+dataset
+
 ## 🔧 Setup and Data
 
 This project uses several key Python libraries for data processing and model training, listed in `requirements.txt`.  
@@ -22,7 +44,7 @@ pip install -r requirements.txt
 2. **Download the Dataset:**
 
 The dataset can be obtained from the [UCI Machine Learning Repository - PhiUSIIL Phishing URL dataset](https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+dataset).
-> **Note:** The training data is note included in this repo for size reasons.
+> **Note:** The training data is note included in this repository for size reasons.
 
 3. **Upload to S3:**
 
@@ -48,7 +70,7 @@ Follow the steps as outlined in the Jupyter notebooks.
 Contains the Lambda function code for real-time inference. It processes input URLs, computes features, and calls the SageMaker endpoint.
 
 ### `data/`
-Holds cleaned datasets and trained model files. Final model data is in `data/local_model_data/xgboost-v2`.
+Holds cleaned datasets and trained model files. Final model data is in `data/local_model_data/xgboost-v2/`.
 
 ### `API Gateway/`
 Contains `index.html` for the web interface.
@@ -58,12 +80,14 @@ Contains unit tests: `test_feature_engineering.py`.
 
 ---
 
-## 🌐 Domain Background
+## 🌐 Data Background
 
 The dataset was downloaded into an **S3 bucket**.
 
 - **Label 1**: Legitimate URL
 - **Label 0**: Phishing URL
+
+- The dataset contains features created from the url string and these include categorical and numerical features. Ideal for an ML workflow.
 
 Distribution:
 - Legitimate (1): 57.19%
@@ -75,11 +99,12 @@ Since the minority class exceeds 40%, the dataset is treated as balanced. No res
 
 ## ⚖️ Feature Engineering & Preprocessing
 
-## ⚖️ Feature Engineering & Preprocessing
 
 (See `EDA notebook`)
 
 Initially, all the feature columns of the dataset were dropped. This is because there was no publically available feature engineering code to produce these features from raw strings. This would pose a challenge in performing inference on unseen url strings. Features have to be able to be derived from the **raw URL string**.
+
+
 
 - To combat this, custom feature engineering logic was developed to compute all of these features from scratch from just the url string, this enables consistency in feature computation between training and inference.
 
@@ -87,7 +112,9 @@ Initially, all the feature columns of the dataset were dropped. This is because 
 
 - An `entropy` feature was engineered to quantify the randomness of characters in a URL — a common trait of phishing attempts.
 
-A correlation analysis was performed to identify and remove redundant or collinear features. 
+A correlation analysis was performed to identify redundant or collinear features, as shown in the below plot. These features were removed.
+
+![Feature Importance Plot](plots/corr_matrix.png)
 
 The final cleaned dataset was uploaded to S3 was split into test/train/validation data and uploaded to S3.
 
@@ -318,7 +345,7 @@ Run tests using:
 ```bash
 pytest -s -v tests/test_feature_engineering.py
 ```
-
+---
 ## End of Project
 
 **Delete all resources** to prevent unused costs, this includes:
