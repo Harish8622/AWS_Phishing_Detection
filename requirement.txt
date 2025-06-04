@@ -1,0 +1,9 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+boto3
+sagemaker
+urllib3
