@@ -10,7 +10,7 @@ Machine learning has proven effective in phishing detection due to its ability t
 
 ### Project Aim
 
-This project aims to build a machine learning model that can classify URLs as *phishing* or *legitimate*, and deploy it as a **real-time prediction service using AWS**.
+This project aims to build and deploy a machine learning model that can classify URLs as *phishing* or *legitimate*, and deploy it as a **real-time prediction service using AWS**. The inference time should also be minimal to allow users to seamlessly use this servive
 
 To ensure robustness during inference, this project avoids reliance on features that are not publicly defined or difficult to reproduce. Although the original dataset from the [UCI Machine Learning Repository - PhiUSIIL Phishing URL dataset][3] contains engineered features, we instead compute these ourselves using custom logic applied to the raw URL string. This guarantees that feature computation is consistent and reproducible at runtime for unseen URLs.
 
@@ -285,7 +285,7 @@ After `training_notebook_2`, the endpoint is deployed.
 }
 ```
 
-- Furthermore inference was quick in just over 200 ms as shown be below screenshot
+- Furthermore inference was quick (a key requirement of the project) in just over 200 ms as shown by the below screenshot
 
 ![Lambda_screenshot](plots/lambda_test.png)
 ---
