@@ -293,7 +293,8 @@ After `training_notebook_2`, the endpoint is deployed.
 ##  HTTP API Endpoint
 
 Used **AWS API Gateway (HTTP API)** for its native CORS support.
-
+- Configure the API to call the active lambda function.
+- Ensure CORS is explicitly enabled.
 **Example `curl` Request:**
 ```bash
 curl -X POST "https://your-api-id.execute-api.eu-west-1.amazonaws.com/phishing-detection"   -H "Content-Type: application/json"   -d '{"url": "https://www.example.com"}'
@@ -317,6 +318,7 @@ curl -X POST "https://your-api-id.execute-api.eu-west-1.amazonaws.com/phishing-d
     - A **generative AI** tool was used to generate this html file as this is for demonstration purposes only.
 - Submits the URL to API Gateway via `fetch()`
 - Displays the prediction result in the browser.
+- Make sure to input the correct API address in the file
 
 ### Hosting on S3:
 
