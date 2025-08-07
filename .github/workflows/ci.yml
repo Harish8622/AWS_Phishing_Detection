@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: ["*"]   # Trigger on any branch
+    branches: ["*"]
   pull_request:
-    branches: ["*"]   # Trigger on any PR to any branch
+    branches: ["*"]
 
 jobs:
   lint-and-test:
@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10
+          python-version: 3.11  # ← try 3.11 instead of 3.10
 
       - name: Install dependencies
         run: |
