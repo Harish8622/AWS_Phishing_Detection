@@ -1,0 +1,74 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python environment + package manager
+pip-log.txt
+poetry.lock
+Pipfile.lock
+
+# Data files (if not using versioned samples)
+data/
+*.csv
+*.tsv
+*.parquet
+
+# Model outputs
+*.pkl
+*.joblib
+*.h5
+*.onnx
+model/
+models/
+checkpoints/
+
+# Logs
+*.log
+
+# MLflow or similar experiment logs
+mlruns/
+mlruns.db
+mlartifacts/
+
+# Test / coverage artifacts
+htmlcov/
+coverage.xml
+*.cover
+.cache
+.tox/
+nosetests.xml
+pytest_cache/
+__coverage__/
+
+# VSCode / IDE settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Docker
+*.dockerfile
+Dockerfile
+docker-compose.yml
+
+# MacOS / system files
+.DS_Store
+
+# AWS / credentials (DO NOT TRACK)
+*.pem
+.aws/
+*.env
+
+# GitHub Actions cache
+.github/workflows/*.log
+
