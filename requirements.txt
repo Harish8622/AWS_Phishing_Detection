@@ -7,3 +7,4 @@ xgboost
 boto3
 sagemaker
 urllib3
+flake8
