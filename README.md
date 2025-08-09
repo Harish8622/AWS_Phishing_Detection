@@ -61,23 +61,23 @@ The project is designed for clarity, reproducibility, and fast deployment.
 
 ```text
         ┌────────────────────┐
-        │    S3 Bucket       │◄──────┐
-        │(Raw CSV Dataset)   │       │
-        └────────┬───────────┘       │
-                 │                   │
-        ┌────────▼─────────┐         │
-        │ Preprocessing    │         │
-        │(Feature Eng. +   │         │
-        │ Split & Upload)  │         │
-        └────────┬─────────┘         │
-                 │                   │
-        ┌────────▼──────────┐        │
-        │  SageMaker Train  │        │
-        │ (XGBoost Model)   │        │
-        └────────┬──────────┘        │
-                 │                   │
-        ┌────────▼──────────────┐    │
-        │   SageMaker Endpoint  │────┘
+        │    S3 Bucket       │
+        │(Raw CSV Dataset)   │       
+        └────────┬───────────┘       
+                 │                   
+        ┌────────▼─────────┐         
+        │ Preprocessing    │         
+        │(Feature Eng. +   │         
+        │ Split & Upload)  │         
+        └────────┬─────────┘         
+                 │                   
+        ┌────────▼──────────┐        
+        │  SageMaker Train  │        
+        │ (XGBoost Model)   │        
+        └────────┬──────────┘        
+                 │                   
+        ┌────────▼──────────────┐    
+        │   SageMaker Endpoint  │
         └────────┬──────────────┘
                  │
         ┌────────▼────────┐

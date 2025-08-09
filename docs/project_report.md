@@ -114,7 +114,7 @@ Initially, all the feature columns of the dataset were dropped. This is because 
 
 A correlation analysis was performed to identify redundant or collinear features, as shown in the below plot. These features were removed.
 
-![Feature Importance Plot](plots/corr_matrix.png)
+![Feature Importance Plot](../plots/corr_matrix.png)
 
 The final cleaned dataset was uploaded to S3 was split into test/train/validation data and uploaded to S3.
 
